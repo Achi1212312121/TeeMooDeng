@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 public class Levelpage extends JFrame implements ActionListener{
     private Container cp;
     private JLabel SelectLevel;
-    private JButton EasyBT,MediumBT,HardBT;
+    private JButton EasyBT,MediumBT,HardBT,BackBT;
     public Levelpage() {
         super("SelectLevel");
         cp = this.getContentPane();
@@ -47,6 +47,16 @@ public class Levelpage extends JFrame implements ActionListener{
         HardBT.addActionListener(this);
         cp.add(HardBT);
 
+        BackBT = new JButton("🔙");
+        BackBT.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 55));
+        BackBT.setBounds(10, 428, 145, 80);
+        BackBT.setBackground(new Color(255, 146, 43));
+        BackBT.setForeground(Color.WHITE);
+        BackBT.setFocusPainted(false);
+        BackBT.addActionListener(this);
+        BackBT.addActionListener(this);
+        cp.add(BackBT);
+
         this.setSize(650, 550);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -64,6 +74,10 @@ public class Levelpage extends JFrame implements ActionListener{
                 }
                 else if(e.getSource()==HardBT){
                     new GameModel.Game();
+                    this.dispose();
+                }
+                else if(e.getSource()==BackBT){
+                    new Mainpage.Mainpagepanel();
                     this.dispose();
                 }
     }
