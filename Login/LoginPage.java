@@ -30,6 +30,7 @@ public class LoginPage extends JFrame implements ActionListener {
         User = new JTextField(50);
         User.setBounds(85, 120, 470, 40);
         User.setFont(new Font("Tahoma",Font.BOLD,20));
+        User.requestFocus();
         cp.add(User);
 
         Password = new JLabel("Password");
@@ -105,19 +106,38 @@ public class LoginPage extends JFrame implements ActionListener {
         g.drawRect(0, 0, w - 1, h - 1);
     }
 }
-     @Override
-     public void actionPerformed(ActionEvent e) {
-         if (e.getSource()==BackBt) {
+    public void actionPerformed(ActionEvent e) {
+    if (e.getSource() == BackBt) {
+        new Mainpage.Mainpagepanel();
+        this.dispose();
+    }
+    else if (e.getSource() == LoginBt) {
+        String username = User.getText().trim();
+        String password = new String(Pass.getPassword());
+        if (username.isEmpty()||password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all information!","Warning",JOptionPane.WARNING_MESSAGE);
+            return ;
+        }
+        if (Usermanager.login(username, password)) {
+            JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
             new Mainpage.Mainpagepanel();
             this.dispose();
-         }
-         else if(e.getSource()==LoginBt){
-            new Mainpage.Mainpagepanel();
-            this.dispose();
-         }
-         else if(e.getSource()==SignupBT){
-            new SignUpPage();
-            this.dispose();
-         }
-     }
+        }
+        else JOptionPane.showMessageDialog(this, "Invalid username or password! Please check or Sign up", "Error!!", JOptionPane.ERROR_MESSAGE);
+    }
+    else if (e.getSource() == SignupBT) {
+        new SignUpPage();
+        this.dispose();
+    }
+    else if (e.getSource() == ShowBt) {
+        if (ShowBt.getText().equals("Show")) {
+            Pass.setEchoChar((char)0);
+            ShowBt.setText("Hide");
+          
+        } else { 
+            Pass.setEchoChar('•');
+            ShowBt.setText("Show");
+        }
+    } 
+}
 }

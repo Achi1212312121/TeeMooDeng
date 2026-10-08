@@ -1,13 +1,16 @@
 package Mainpage;
 import java.awt.*;
 import javax.swing.*;
+
+import Login.Usermanager;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Mainpagepanel extends JFrame implements ActionListener{
     private Container cp;
-    private JButton StartButton,QuitButton,LoginButton,info;
-    private JLabel l1;
+    private JButton StartButton,QuitButton,LoginButton,info,LogoutButton;
+    private JLabel l1,userLabel;
 
     public Mainpagepanel() {
       
@@ -17,7 +20,7 @@ public class Mainpagepanel extends JFrame implements ActionListener{
         cp.setBackground(new Color(233, 250, 200));
 
         l1 = new JLabel("TeeMooDeng");
-        l1.setBounds(205, 20, 300, 100);
+        l1.setBounds(189, 20, 300, 100);
         l1.setFont(new Font("Fredoka",Font.BOLD,40));
         l1.setForeground(Color.black);
         cp.add(l1);
@@ -40,7 +43,24 @@ public class Mainpagepanel extends JFrame implements ActionListener{
         QuitButton.addActionListener(this);
         cp.add(QuitButton);
 
-        LoginButton = new JButton("Login");
+        String currentUser = Usermanager.getCurrentUser();
+        if(currentUser!=null){
+            userLabel = new JLabel("👤Player: " + currentUser);
+            userLabel.setBounds(20, 5, 250, 30);
+            userLabel.setFont(new Font("Fredoka", Font.BOLD, 18));
+            userLabel.setForeground(Color.BLACK);
+            cp.add(userLabel);
+            
+            LogoutButton = new JButton("Logout");
+            LogoutButton.setBounds(430, 5, 110, 30);
+            LogoutButton.setFont(new Font("Fredoka", Font.BOLD, 18));
+            LogoutButton.setForeground(Color.white);
+            LogoutButton.setBackground(new Color(220, 53, 69)); // สีแดง
+            LogoutButton.setFocusPainted(false);
+            LogoutButton.addActionListener(this);
+            cp.add(LogoutButton);
+        }
+        else{LoginButton = new JButton("Login");
         LoginButton.setBounds(450, 5, 90, 30);
         LoginButton.setFont(new Font("Fredoka",Font.BOLD,20));
         LoginButton.setForeground(Color.white);
@@ -48,7 +68,7 @@ public class Mainpagepanel extends JFrame implements ActionListener{
         LoginButton.setFocusPainted(false);
         LoginButton.addActionListener(this);
         cp.add(LoginButton);
-
+    }
         info = new JButton("❓");
         info.setBounds(543, 5, 90, 30);
         info.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 20));
@@ -78,9 +98,15 @@ public class Mainpagepanel extends JFrame implements ActionListener{
             new Info.info();
             this.dispose();
         }
-        else if(e.getSource()==LoginButton){
+        else if( LoginButton!= null&&e.getSource()==LoginButton ){
             new Login.LoginPage();
             this.dispose();
+        }
+        else if( LogoutButton!= null&&e.getSource()==LogoutButton ){
+            Usermanager.logout();
+            JOptionPane.showMessageDialog(this, "Logged out successfully!!");
+             new Mainpagepanel();
+             this.dispose();
         }
     }
 }   

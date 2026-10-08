@@ -1,7 +1,4 @@
-
-import Login.LoginPage;
-import Login.SignUpPage;
-import Mainpage.Mainpagepanel;
+import Mainpage.*;
 public class App {
     public static void main(String[] args) {
         new Mainpagepanel();

@@ -65,15 +65,15 @@ public class Levelpage extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
                 if(e.getSource()==EasyBT){
-                    new GameModel.Game();
+                    new GameModel.Game("Easy");
                     this.dispose();
                 }
                 else if(e.getSource()==MediumBT){
-                    new GameModel.Game();
+                    new GameModel.Game("Medium");
                     this.dispose();
                 }
                 else if(e.getSource()==HardBT){
-                    new GameModel.Game();
+                    new GameModel.Game("Hard");
                     this.dispose();
                 }
                 else if(e.getSource()==BackBT){

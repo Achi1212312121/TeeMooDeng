@@ -85,6 +85,7 @@ public class SignUpPage extends JFrame implements ActionListener {
         Show1.setBounds(482, 223, 68, 30);
         Show1.setFont(new Font("Tahoma",Font.BOLD,10));
         Show1.setFocusPainted(false);
+        Show1.addActionListener(this);
         cp.add(Show1);
 
         Show2 = new JButton("Show");
@@ -93,6 +94,7 @@ public class SignUpPage extends JFrame implements ActionListener {
         Show2.setBounds(482, 293, 68, 30);
         Show2.setFont(new Font("Tahoma",Font.BOLD,10));
         Show2.setFocusPainted(false);
+        Show2.addActionListener(this);
         cp.add(Show2);
 
         Signupbt1 = new JButton("Signup");
@@ -110,6 +112,7 @@ public class SignUpPage extends JFrame implements ActionListener {
         Clerabt.setForeground(Color.white);
         Clerabt.setBounds(350, 360, 160, 68);
         Clerabt.setFocusable(false);
+        Clerabt.addActionListener(this);
         cp.add(Clerabt);
 
         Draw1 b = new Draw1();
@@ -124,6 +127,7 @@ public class SignUpPage extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        Name.requestFocus();
     }
     class Draw extends JPanel{
         protected void paintComponent(Graphics g){
@@ -146,12 +150,55 @@ public class SignUpPage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==Signupbt1){
+            String username = Name.getText().trim();
+            String password = new String(Psword.getPassword());
+            String confirmPss = new String(ConPassword.getPassword());
+            if (username.isEmpty()||password.isEmpty()||confirmPss.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please fill in all the information!!","แจ้งเตือน!!",JOptionPane.WARNING_MESSAGE);
+                return ;
+            } 
+            if (!password.equals(confirmPss)) {
+                JOptionPane.showMessageDialog(this,"Passwords do not match! Please try again","Eror",JOptionPane.WARNING_MESSAGE);
+                return ;
+            }
+            boolean isSuccess = Usermanager.register(username, password);
+            if (isSuccess) {
+                JOptionPane.showMessageDialog(this, "Sign up complete! ","Success!!",JOptionPane.INFORMATION_MESSAGE);
             new LoginPage();
             this.dispose();
+            }
+            else JOptionPane.showMessageDialog(this, "Username is already use please try again","Eror!!",JOptionPane.WARNING_MESSAGE);
+           
         }
         else if(e.getSource()==LoginBt){
             new LoginPage();
             this.dispose();
         }
+        else if (e.getSource() == Show1) {
+            if(Show1.getText().equals("Show")){
+                Psword.setEchoChar((char)0);
+                Show1.setText("Hide");
+            }
+            else{
+                Psword.setEchoChar('•');
+                Show1.setText("Show");
+            }
+        }
+        else if(e.getSource() == Show2){
+            if(Show2.getText().equals("Show")){
+                ConPassword.setEchoChar((char)0);
+                Show2.setText("Hide");
+            }
+            else{
+                ConPassword.setEchoChar('•');
+                Show2.setText("Show");
+            }
+        }
+       else if(e.getSource()==Clerabt){
+        Name.setText("");
+        Psword.setText("");
+        ConPassword.setText("");
+        Name.requestFocus();
+       }
     }
 }
