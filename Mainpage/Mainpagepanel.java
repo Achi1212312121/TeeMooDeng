@@ -1,15 +1,13 @@
 package Mainpage;
 import java.awt.*;
 import javax.swing.*;
-
 import Login.Usermanager;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Mainpagepanel extends JFrame implements ActionListener{
     private Container cp;
-    private JButton StartButton,QuitButton,LoginButton,info,LogoutButton;
+    private JButton StartButton,QuitButton,LoginButton,info,LogoutButton,HighScorebt;
     private JLabel l1,userLabel;
 
     public Mainpagepanel() {
@@ -35,7 +33,7 @@ public class Mainpagepanel extends JFrame implements ActionListener{
         cp.add(StartButton);
 
         QuitButton = new JButton("Quit");
-        QuitButton.setBounds(189, 275, 250, 90);
+        QuitButton.setBounds(189, 348, 250, 90);
         QuitButton.setFont(new Font("Fredoka",Font.BOLD,35));
         QuitButton.setForeground(Color.white);
         QuitButton.setBackground(new Color(255, 146, 43));
@@ -78,6 +76,15 @@ public class Mainpagepanel extends JFrame implements ActionListener{
         info.addActionListener(this);
         cp.add(info);
 
+        HighScorebt = new JButton("HighScore");
+        HighScorebt.setFont(new Font("Tahoam",Font.BOLD,35));
+        HighScorebt.setForeground(Color.white);
+        HighScorebt.setBackground(new Color(255, 146, 43));
+        HighScorebt.setFocusPainted(false);
+        HighScorebt.addActionListener(this);
+        HighScorebt.setBounds(189, 240, 250, 90);
+        cp.add(HighScorebt);
+
         this.setSize(650, 550);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -107,6 +114,10 @@ public class Mainpagepanel extends JFrame implements ActionListener{
             JOptionPane.showMessageDialog(this, "Logged out successfully!!");
              new Mainpagepanel();
              this.dispose();
-        }
+             }
+             else if(e.getSource() == HighScorebt){
+                new Hightscore.Hightscorepage(-1, "Easy");
+                this.dispose();
+             }
     }
 }   

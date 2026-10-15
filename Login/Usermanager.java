@@ -1,8 +1,9 @@
 package Login;
 import java.io.*;
 import java.util.LinkedHashMap;
+
 public class Usermanager {
-    private static final String File_name="Data/Username_Password.txt";//ตัวแปรเก็บชื่อไฟล์
+    private static final String File_name="Data/Username_Password.csv";//ตัวแปรเก็บชื่อไฟล์
     private static LinkedHashMap<String,String> user = new LinkedHashMap<>();//ตัวแปรเก็บusernameและpassword
     private static String currentUser = null;//ตัวแปรเก็บusernameที่loginอยู่
     
@@ -25,6 +26,9 @@ public class Usermanager {
         }
     }
     public static boolean register(String username, String password){
+        if (username.contains(",")) {
+            return false;
+        }
         if (user.containsKey(username)) {
             return false;
         }//ถ้ามีusernameนี้อยู่แล้วให้return false
@@ -33,7 +37,7 @@ public class Usermanager {
         return true;
     }
     public static void saveuser(){
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("Data/Username_Password.txt"))){
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("Data/Username_Password.csv"))){
             for (String u : user.keySet()) {
                 writer.write(u+","+user.get(u));//บันทึกusernameและpasswordลงในไฟล์
                 writer.newLine();//ขึ้นบรรทัดใหม่

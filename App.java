@@ -1,3 +1,4 @@
+import Hightscore.Hightscorepage;
 import Mainpage.*;
 public class App {
     public static void main(String[] args) {

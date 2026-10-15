@@ -4,15 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+import Hightscore.Hightscorepage;
+
 public class GameOverPage extends JFrame implements ActionListener{
     private Container cp;
     private JLabel GameOverTitle, ScoreLabel;
     private JButton PlayAgainBT, HighScoreBT, MainMenuBT;
     private  String level;
+    private  int score;
     
     public GameOverPage(int score,String level) {
         super("GameOver");
         this.level = level;
+        this.score = score;
         cp = this.getContentPane();
         cp.setLayout(null);
         cp.setBackground(new Color(233, 250, 200));
@@ -69,6 +73,8 @@ public class GameOverPage extends JFrame implements ActionListener{
             this.dispose();
         }
         else if(e.getSource()==HighScoreBT){
+            new Hightscore.Hightscorepage(score, level);
+            this.dispose();
         }
         else if(e.getSource()==MainMenuBT){
             new Mainpage.Mainpagepanel();

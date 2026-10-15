@@ -2,6 +2,7 @@ package Login;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+
 public class SignUpPage extends JFrame implements ActionListener {
     private  Container cp;
     private  JButton LoginBt,Signupbt1,Clerabt,Show1,Show2;
