@@ -151,24 +151,24 @@ public class SignUpPage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==Signupbt1){
-            String username = Name.getText().trim();
-            String password = new String(Psword.getPassword());
-            String confirmPss = new String(ConPassword.getPassword());
+            String username = Name.getText().trim();//trim()ลบช่องว่างด้านหน้าและด้านหลังของusername
+            String password = new String(Psword.getPassword());//แปลงค่าchar[]เป็นString
+            String confirmPss = new String(ConPassword.getPassword());//แปลงค่าchar[]เป็นString
             if (username.isEmpty()||password.isEmpty()||confirmPss.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please fill in all the information!!","แจ้งเตือน!!",JOptionPane.WARNING_MESSAGE);
-                return ;
+                return ;//ถ้าusernameหรือpasswordหรือconfirmPssเป็นค่าว่างให้แสดงข้อความแจ้งเตือนและreturn
             } 
             if (!password.equals(confirmPss)) {
                 JOptionPane.showMessageDialog(this,"Passwords do not match! Please try again","Eror",JOptionPane.WARNING_MESSAGE);
-                return ;
+                return ;//ถ้าpasswordไม่ตรงกับconfirmPssให้แสดงข้อความแจ้งเตือนและreturn
             }
-            boolean isSuccess = Usermanager.register(username, password);
+            boolean isSuccess = Usermanager.register(username, password);//เรียกใช้เมธอดregister()ของUsermanagerเพื่อทำการสมัครสมาชิกและเก็บผลลัพธ์ในตัวแปรisSuccess
             if (isSuccess) {
-                JOptionPane.showMessageDialog(this, "Sign up complete! ","Success!!",JOptionPane.INFORMATION_MESSAGE);
-            new LoginPage();
+                JOptionPane.showMessageDialog(this, "Sign up complete! ","Success!!",JOptionPane.INFORMATION_MESSAGE);//ถ้าสมัครสมาชิกสำเร็จให้แสดงข้อความแจ้งเตือน
+            new LoginPage();//เปิดหน้าต่างLoginPage
             this.dispose();
             }
-            else JOptionPane.showMessageDialog(this, "Username is already use please try again","Eror!!",JOptionPane.WARNING_MESSAGE);
+            else JOptionPane.showMessageDialog(this, "Username is already use please try again","Eror!!",JOptionPane.WARNING_MESSAGE);//ถ้าสมัครสมาชิกไม่สำเร็จให้แสดงข้อความแจ้งเตือน
            
         }
         else if(e.getSource()==LoginBt){
@@ -177,7 +177,7 @@ public class SignUpPage extends JFrame implements ActionListener {
         }
         else if (e.getSource() == Show1) {
             if(Show1.getText().equals("Show")){
-                Psword.setEchoChar((char)0);
+                Psword.setEchoChar((char)0);//ถ้ากดshowให้แสดงpassword
                 Show1.setText("Hide");
             }
             else{

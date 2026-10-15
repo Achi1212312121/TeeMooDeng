@@ -19,7 +19,7 @@ public class Mainpagepanel extends JFrame implements ActionListener{
 
         l1 = new JLabel("TeeMooDeng");
         l1.setBounds(189, 20, 300, 100);
-        l1.setFont(new Font("Fredoka",Font.BOLD,40));
+        l1.setFont(new Font("Tahoma",Font.BOLD,40));
         l1.setForeground(Color.black);
         cp.add(l1);
 
@@ -58,7 +58,8 @@ public class Mainpagepanel extends JFrame implements ActionListener{
             LogoutButton.addActionListener(this);
             cp.add(LogoutButton);
         }
-        else{LoginButton = new JButton("Login");
+        else{
+        LoginButton = new JButton("Login");
         LoginButton.setBounds(450, 5, 90, 30);
         LoginButton.setFont(new Font("Fredoka",Font.BOLD,20));
         LoginButton.setForeground(Color.white);
@@ -105,18 +106,18 @@ public class Mainpagepanel extends JFrame implements ActionListener{
             new Info.info();
             this.dispose();
         }
-        else if( LoginButton!= null&&e.getSource()==LoginButton ){
+        else if( LoginButton!= null &&e.getSource()==LoginButton ){
             new Login.LoginPage();
             this.dispose();
         }
         else if( LogoutButton!= null&&e.getSource()==LogoutButton ){
-            Usermanager.logout();
-            JOptionPane.showMessageDialog(this, "Logged out successfully!!");
+            Usermanager.logout();//เรียกใช้เมธอดlogout()ของUsermanagerเพื่อลบข้อมูลผู้ใช้ปัจจุบัน
+            JOptionPane.showMessageDialog(this, "Logged out successfully!!");//แสดงข้อความแจ้งเตือนว่าล็อกเอาต์สำเร็จ
              new Mainpagepanel();
              this.dispose();
              }
              else if(e.getSource() == HighScorebt){
-                new Hightscore.Hightscorepage(-1, "Easy");
+                new Hightscore.Hightscorepage(-1, "Easy");//เปิดหน้าต่าง Highscorepage โดยส่งค่า -1 และ "Easy" เป็นพารามิเตอร์
                 this.dispose();
              }
     }

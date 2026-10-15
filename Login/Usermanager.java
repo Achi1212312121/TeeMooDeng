@@ -18,8 +18,8 @@ public class Usermanager {
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");//แยกusernameและpasswordด้วยเครื่องหมายคอมม่า
                 if(data.length == 2){
-                    user.put(data[0].trim(),data[1].trim());
-                }
+                    user.put(data[0].trim(),data[1].trim());//เก็บusernameและpasswordลงในuser
+                }//ถ้าแยกได้2ส่วนให้เก็บusernameและpasswordลงในuser
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,7 +41,7 @@ public class Usermanager {
             for (String u : user.keySet()) {
                 writer.write(u+","+user.get(u));//บันทึกusernameและpasswordลงในไฟล์
                 writer.newLine();//ขึ้นบรรทัดใหม่
-            }
+            }//วนลูปบันทึกuserทั้งหมดลงในไฟล์
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,9 +54,9 @@ public class Usermanager {
         return false;
     }
     public static String getCurrentUser(){
-        return currentUser;
+        return currentUser;//return usernameที่loginอยู่
     }
     public  static  String logout(){
-        return  currentUser = null;
+        return  currentUser = null;//logoutโดยreturnค่าเป็นnull
     }
 }

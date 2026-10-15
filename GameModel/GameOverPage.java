@@ -15,19 +15,19 @@ public class GameOverPage extends JFrame implements ActionListener{
     
     public GameOverPage(int score,String level) {
         super("GameOver");
-        this.level = level;
-        this.score = score;
+        this.level = level;//เก็บlevelที่เลือก
+        this.score = score;//เก็บscoreที่ได้
         cp = this.getContentPane();
         cp.setLayout(null);
         cp.setBackground(new Color(233, 250, 200));
 
-        GameOverTitle = new JLabel("Game Over", SwingConstants.CENTER);
+        GameOverTitle = new JLabel("Game Over", SwingConstants.CENTER);//สร้าง JLabel สำหรับข้อความ "Game Over" และจัดให้อยู่ตรงกลาง
         GameOverTitle.setBounds(125, 10, 400, 45);
         GameOverTitle.setFont(new Font("Fredoka",Font.BOLD,34));
         GameOverTitle.setForeground(Color.black);
         cp.add(GameOverTitle);
 
-        ScoreLabel = new JLabel("Your Score:" + score, SwingConstants.CENTER);
+        ScoreLabel = new JLabel("Your Score:" + score, SwingConstants.CENTER);//สร้าง JLabel สำหรับแสดงคะแนนของผู้เล่นและจัดให้อยู่ตรงกลาง
         ScoreLabel.setBounds(125, 55, 400, 45);
         ScoreLabel.setFont(new Font("Fredoka",Font.BOLD,34));
         ScoreLabel.setForeground(Color.black);
@@ -73,7 +73,7 @@ public class GameOverPage extends JFrame implements ActionListener{
             this.dispose();
         }
         else if(e.getSource()==HighScoreBT){
-            new Hightscore.Hightscorepage(score, level);
+            new Hightscore.Hightscorepage(score, level);//ถ้าผู้เล่นคลิกปุ่ม HighScore ให้เปิดหน้าต่าง Highscorepage โดยส่งคะแนนและระดับปัจจุบันไปด้วย
             this.dispose();
         }
         else if(e.getSource()==MainMenuBT){

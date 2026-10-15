@@ -103,7 +103,7 @@ public  class Game extends JFrame implements ActionListener {
                 timer.stop();
                 modelTimer.stop();
                 JOptionPane.showMessageDialog(Game.this, "Time Out!!\nYourScore:"+score,"Game Over",JOptionPane.INFORMATION_MESSAGE);
-                new GameOverPage(score,level);
+                new GameOverPage(score,level);//เปิดหน้าต่างGameOverPageโดยส่งscoreและlevelไปเป็นพารามิเตอร์
                 Game.this.dispose();
             }
         }

@@ -65,15 +65,15 @@ public class Levelpage extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
                 if(e.getSource()==EasyBT){
-                    new GameModel.Game("Easy");
+                    new GameModel.Game("Easy");//ถ้าผู้เล่นคลิกปุ่ม Easy ให้เปิดหน้าต่าง Game โดยส่งค่า "Easy" ไปเป็นพารามิเตอร์
                     this.dispose();
                 }
                 else if(e.getSource()==MediumBT){
-                    new GameModel.Game("Medium");
+                    new GameModel.Game("Medium");//ถ้าผู้เล่นคลิกปุ่ม Medium ให้เปิดหน้าต่าง Game โดยส่งค่า "Medium" ไปเป็นพารามิเตอร์
                     this.dispose();
                 }
                 else if(e.getSource()==HardBT){
-                    new GameModel.Game("Hard");
+                    new GameModel.Game("Hard");//ถ้าผู้เล่นคลิกปุ่ม Hard ให้เปิดหน้าต่าง Game โดยส่งค่า "Hard" ไปเป็นพารามิเตอร์
                     this.dispose();
                 }
                 else if(e.getSource()==BackBT){
